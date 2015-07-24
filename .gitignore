@@ -1,0 +1,22 @@
+# git ls-files --others --exclude-from=.git/info/exclude
+
+### exclude everything
+*
+
+### add folders to be tracked
+!bin/
+!bin/**
+
+!.bashrc.d/
+!.bashrc.d/**
+
+# but exclude .bashrc.d/.private 
+.bashrc.d/.private
+.bashrc.d/.private/**
+
+### add files to be tracked
+!.profile
+!.bashrc
+!.vimrc
+!.gitignore
+!README.md

@@ -1,0 +1,59 @@
+#!/usr/bin/perl
+
+=pod
+	Description:
+		Function to rename recursively files, as the s/// will act
+		Scans files from cwd, recursively.
+	
+	Usage: rename_rc <from> <to>
+		<from>	- Perl regex to match the file to be renamed
+		<to>	- String to replace the match
+=cut
+
+use strict;
+use warnings;
+use File::Find;
+
+### check proper usage
+unless ( @ARGV == 2 ){
+print <<"USAGE";
+~~~~~~~~~~~~~~ Wrong Usage - please note ~~~~~~~~~~~~~~~~~~~~~
+Usage:
+ rename_rc <from> <to>
+  <from> - Perl regex to match the file to be renamed
+  <to>	 - String to replace the match
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+USAGE
+exit(0);
+}
+
+
+### take command line arguments:
+my ($from,$to) = @ARGV;
+print "rename_rc $from $to\n";
+
+finddepth( \&action,'.' );
+
+
+sub action{
+	if ( m{$from} ){
+		my $new_name = $_;
+		$new_name =~ s/$from/$to/;
+		print "Renaming [$File::Find::name] with: $from -> $to\n";
+		rename $_=>$new_name;
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
