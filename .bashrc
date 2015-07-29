@@ -7,9 +7,6 @@ if [ -f /etc/bashrc ]; then
     source /etc/bashrc
 fi
 
-# load perlbrew bashrc
-source ${HOME}/perl5/perlbrew/etc/bashrc
-
 
 ### load custom bash config files
 public_bashrc_dir='.bashrc.d'
@@ -28,6 +25,7 @@ files_to_load=(
     functions.sh
     window_title.sh
     prompt.sh
+    custom_bashrc.sh
 )
 
 for bash_file in "${files_to_load[@]}"; do
